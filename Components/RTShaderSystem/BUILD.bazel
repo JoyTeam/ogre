@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//:internal.bzl", "OGRE_LINKOPTS")
+
+cc_library(
+    name = "RTShaderSystem",
+    srcs = glob(
+        [
+            "src/*.cpp",
+            "src/*.h",
+        ],
+    ),
+    hdrs = glob([
+        "include/*.h",
+    ]),
+    includes = [
+        "include",
+        "src",
+    ],
+    linkopts = OGRE_LINKOPTS,
+    visibility = ["//visibility:public"],
+    deps = [
+        "//OgreMain",
+        "//Platform",
+    ],
+)

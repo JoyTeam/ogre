@@ -93,7 +93,7 @@ OGRE_THREAD_PROVIDER = 4
 /** Disables use of the ZIP archive support.
 WARNING: Disabling this will make the samples unusable.
 */
-#define OGRE_NO_ZIP_ARCHIVE 1
+#define OGRE_NO_ZIP_ARCHIVE 0
 
 #define OGRE_NO_TBB_SCHEDULER 0
 
