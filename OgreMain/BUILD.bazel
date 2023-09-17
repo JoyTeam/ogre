@@ -1,0 +1,30 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "OgreMain",
+	includes = [
+        "include",
+		"src",
+		"src/zip",
+    ],
+	srcs = glob([
+        "src/*.h",
+        "src/*.cpp",
+    ], exclude=[
+		"src/OgreFileSystemLayerNoOp.cpp",
+		"src/OgreDDSCodec.cpp",
+		"src/OgrePVRTCCodec.cpp",
+		"src/OgreETCCodec.cpp",
+		"src/OgreZip.cpp",
+		"src/OgreSearchOps.cpp",
+	]) + select({
+        "@bazel_tools//src/conditions:windows": glob([
+            "src/WIN32/*.cpp",
+        ]),
+     	"//conditions:default": [],
+    }),
+	deps = [
+		"//Platform",
+	],
+	visibility = ["//visibility:public"],
+)

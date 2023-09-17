@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//:internal.bzl", "OGRE_LINKOPTS")
+
+cc_library(
+    name = "GL",
+    srcs = glob(
+        [
+            "src/**/*.h",
+            "src/*.c",
+            "src/*.cpp",
+            "src/GLSL/src/*.cpp",
+            "src/atifs/src/*.cpp",
+            "src/nvparse/*.cpp",
+        ],
+        exclude = [
+            "src/nvparse/*__test*",
+        ],
+    ),
+    hdrs = glob([
+        "include/**/*.h",
+    ]),
+    includes = [
+        "include",
+        "src",
+        "src/GLSL/include",
+        "src/atifs/include",
+        "src/nvparse",
+    ],
+    linkopts = OGRE_LINKOPTS,
+    visibility = ["//visibility:public"],
+    deps = [
+        "//OgreMain",
+        "//Platform",
+        "//RenderSystems/GLSupport",
+    ],
+)

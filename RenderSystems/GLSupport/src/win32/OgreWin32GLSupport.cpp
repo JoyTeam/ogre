@@ -257,7 +257,7 @@ namespace Ogre {
 				#endif
 			#endif
 		#else
-			static const TCHAR staticVar;
+			static const TCHAR staticVar = {};
 			GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, &staticVar, &hinst);
 		#endif
         
@@ -455,7 +455,7 @@ namespace Ogre {
         {
             format = ChoosePixelFormat(hdc, &pfd);
         }
-
+        
 
         return (format && SetPixelFormat(hdc, format, &pfd));
     }

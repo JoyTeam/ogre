@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//:internal.bzl", "OGRE_LINKOPTS")
+
+cc_library(
+    name = "Platform",
+    copts = select({
+        "@bazel_tools//src/conditions:windows": [
+            "/wd4251",
+            "/wd4275",
+        ],
+        "//conditions:default": [],
+    }),
+	linkopts = OGRE_LINKOPTS,
+    hdrs = select({
+        "@bazel_tools//src/conditions:windows": glob([
+			"Windows/include/*.h",
+        ]) + [
+        ],
+     	"//conditions:default": [],
+    }),
+    includes = select({
+		"@bazel_tools//src/conditions:windows": [
+			"Windows/include",
+		],
+		"//conditions:default": [],
+	}),
+    visibility = ["//:__subpackages__"],
+)

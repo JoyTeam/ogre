@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+	name = "GLSupport",
+	includes = [
+        "include",
+        "include/GLSL",
+    ] + select({
+        "@bazel_tools//src/conditions:windows": [
+            "include/win32",
+        ],
+     	"//conditions:default": [],
+    }),
+	srcs = glob([
+        "src/*.cpp",
+		"src/GLSL/*.cpp",
+    ]) + select({
+        "@bazel_tools//src/conditions:windows": glob([
+            "src/win32/*.cpp",
+        ]),
+     	"//conditions:default": [],
+    }),
+	deps = [
+		"//OgreMain",
+		"//Platform",
+	],
+	visibility = ["//RenderSystems:__subpackages__"],
+)

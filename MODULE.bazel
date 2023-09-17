@@ -1,0 +1,5 @@
+"""Ogre 3D Module."""
+
+module(name = "ogre", version = "14.1.0")
+
+bazel_dep(name = "rules_cc", version = "0.0.8")

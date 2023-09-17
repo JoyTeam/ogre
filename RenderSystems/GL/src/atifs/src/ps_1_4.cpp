@@ -26,6 +26,11 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
+#ifdef __clang__
+#   pragma clang diagnostic ignored "-Wwritable-strings"
+#   pragma clang diagnostic ignored "-Wformat-security"
+#   pragma clang diagnostic ignored "-Wformat"
+#endif
  
  //---------------------------------------------------------------------------
 #include "ps_1_4.h"

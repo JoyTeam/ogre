@@ -39,6 +39,9 @@ THE SOFTWARE.
 #   pragma warning (disable : 4267)
 #endif
 
+#ifdef __clang__
+#   pragma clang diagnostic ignored "-Wdangling-else"
+#endif
 
 namespace Ogre {
 
